@@ -32,17 +32,25 @@
 
     <!-- Hero Section -->
     <section id="home" class="hero">
-        <div class="hero-content">
-            <h1>Hello, I'm <span class="highlight">Tanapat</span></h1>
-            <p class="hero-subtitle">Full Stack Developer</p>
-            <p class="hero-description">I create beautiful and functional web applications</p>
-            <div class="hero-buttons">
-                <a href="#projects" class="btn btn-primary">View My Work</a>
-                <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+        <div class="container">
+            <div class="hero-main">
+                <div class="hero-content">
+                    <div class="hero-text">
+                        <span id="titleText" class="hero-title"></span>
+                        <span id="highlightText" class="hero-highlight"></span>
+                        <span id="subtitleText" class="hero-subtitle"></span>
+                        <span id="descriptionText" class="hero-description"></span>
+                        <span id="cursor" class="cursor">|</span>
+                    </div>
+                    <div class="hero-buttons">
+                        <a href="#projects" class="btn btn-primary">View My Work</a>
+                        <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <img src="images/profile.png" alt="Profile Picture">
+                </div>
             </div>
-        </div>
-        <div class="hero-image">
-            <img src="images/profile.png" alt="Profile Picture">
         </div>
     </section>
 
@@ -202,8 +210,8 @@
     </section>
 
     <!-- BacktopButton -->
-    <button id="backToTopBtn" class="back-to-top">
-        <i class="fas fa-arrow-up"></i>
+    <button id="backToTopBtn" class="back-to-top b2tCircle">
+        <i id="backToTopIcon" class="fas fa-arrow-up"></i>
     </button>
 
     <!-- Footer -->

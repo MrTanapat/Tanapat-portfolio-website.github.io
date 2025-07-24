@@ -1,6 +1,60 @@
 // Mobile Navigation Toggle
 const navToggle = document.querySelector(".nav-toggle");
 const navMenu = document.querySelector(".nav-menu");
+//onload typewriting animation
+const titleText = document.querySelector("#titleText");
+const highlightText = document.querySelector("#highlightText");
+const subtitleText = document.querySelector("#subtitleText");
+const descriptionText = document.querySelector("#descriptionText");
+
+
+
+
+// window.addEventListener("load", () => {
+//     await typeWriter(h1,"Hi, I'm Tanapat", 70, () => {
+//       typeWriter(p1, "Full Stack Developer", 70, () => {
+//         typeWriter(p2, "I create beautiful and functional web applications", 70)
+//       });
+//     })
+// });
+
+function blinkingCursor() {
+    const cursor = document.querySelector("#cursor");
+    cursor.classList.add("blinking");
+    //add blinking class
+}
+
+window.addEventListener("load", async () => {
+  //wait for each line to fish then blink cursor
+  await new Promise(resolve => setTimeout(resolve, 200));
+  await typeWriter(titleText, "Hi, I'm"); 
+  highlightText.innerHTML += '&ensp;';
+  await typeWriter(highlightText, "Tanapat");
+  highlightText.innerHTML += '<br>';
+  await typeWriter(subtitleText, "Full Stack Developer");
+  subtitleText.innerHTML += '<br>';
+  await typeWriter(descriptionText, "I create beautiful and functional web applications");
+
+  blinkingCursor(); //then run this function
+});
+
+//typewriting animation object
+const typeWriter = (element, text) => {
+  return new Promise(resolve => {
+    let i = 0;
+    const type = () => {
+      if (i < text.length) {
+        element.innerHTML += text.charAt(i);
+        i++;
+        setTimeout(type, 70);
+      } else {
+        resolve();
+      }
+    };
+    type();
+  });
+};
+
 
 navToggle.addEventListener("click", () => {
   navMenu.classList.toggle("active");
@@ -61,6 +115,8 @@ contactForm.addEventListener("submit", (e) => {
 
 // Back to Top Button function
 const backToTopBtn = document.getElementById("backToTopBtn");
+const backToTopIcon = document.getElementById("backToTopIcon");
+
 
 window.addEventListener("scroll", () => {
   if (window.scrollY > 300) {
@@ -75,4 +131,16 @@ backToTopBtn.addEventListener("click", () => {
     top: 0,
     behavior: "smooth",
   });
+});
+
+//back to top tool-tips (pill button) animations
+backToTopBtn.addEventListener("mouseenter", () => {
+  backToTopBtn.classList.add('pill')
+  backToTopIcon.innerHTML = "<span class='pillText'>&ensp;Back To Top</span>"
+});
+
+backToTopBtn.addEventListener("mouseleave", () => {
+  backToTopBtn.classList.remove('pill');
+  backToTopIcon.innerHTML = "";
+
 });
