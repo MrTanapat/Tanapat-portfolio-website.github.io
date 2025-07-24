@@ -79,25 +79,46 @@ body {
 
 /* Hero Section */
 .hero {
-    min-height: 100vh;
-    /* display: block; */
-    align-items: center;
-    padding: 100px 20px 50px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     color: white;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+
+}
+
+.hero-main {
+    display: flex;
+    padding: 100px 20px 50px;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+.hero-text {
+    position: relative;
+    display: inline-block;
+}
+.cursor {
+    color: white;
+    font-size: 3rem;
+}
+.blinking{
+    animation: blink 1s step-start infinite;
+}
+@keyframes blink {
+    50% {opacity: 0;}
 }
 
 .hero-content {
     flex: 1;
-    max-width: 600px;
 }
 
-.hero h1 {
+.hero-title {
     font-size: 3rem;
+    font-weight: bold;
     margin-bottom: 1rem;
 }
 
-.highlight {
+.hero-highlight {
+    font-size: 3rem;
+    font-weight: bold;
     color: #f39c12;
 }
 
