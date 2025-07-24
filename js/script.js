@@ -1,6 +1,34 @@
 // Mobile Navigation Toggle
 const navToggle = document.querySelector(".nav-toggle");
 const navMenu = document.querySelector(".nav-menu");
+//onload typewriting animation
+const h1 = document.querySelector("#h1");
+const p1 = document.querySelector("#p1");
+const p2 = document.querySelector("#p2");
+
+window.addEventListener("load", () => {
+  typeWriter(h1,"Hi, I'm Tanapat", 30, () => {
+    typeWriter(p1, "Full Stack Developer", 30, () => {
+      typeWriter(p2, "I create beautiful and functional web applications", 30)
+    });
+  })
+});
+
+//typewriting animation object
+const typeWriter = (element, text, speed = 50, callback = null) => {
+  let i = 0;
+  const type = () => {
+    if (i < text.length) {
+      element.innerHTML += text.charAt(i);
+      i++
+      setTimeout(type, speed);
+    } else if (callback) {
+      callback();
+    }
+  }
+  type();
+};
+
 
 navToggle.addEventListener("click", () => {
   navMenu.classList.toggle("active");
@@ -61,6 +89,18 @@ contactForm.addEventListener("submit", (e) => {
 
 // Back to Top Button function
 const backToTopBtn = document.getElementById("backToTopBtn");
+const backToTopIcon = document.getElementById("backToTopIcon");
+
+backToTopBtn.addEventListener("mouseenter", () => {
+  backToTopBtn.classList.add('pill')
+  backToTopIcon.innerHTML = "&ensp;Back To Top"
+});
+
+backToTopBtn.addEventListener("mouseleave", () => {
+  backToTopBtn.classList.remove('pill')
+  backToTopIcon.innerHTML = ""
+
+});
 
 window.addEventListener("scroll", () => {
   if (window.scrollY > 300) {

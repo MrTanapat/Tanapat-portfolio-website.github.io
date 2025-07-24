@@ -506,24 +506,38 @@ body {
     background-color: #3498db;
     color: white;
     cursor: pointer;
-    padding: 15px;
-    border-radius: 50%;
-    font-size: 20px;
     opacity: 0;
     visibility: hidden;
-    transform: translateY(15px);
-    transition: opacity 0.4s ease-out, transform 0.4s ease-out, background-color 0.3s ease;
+    height : 54px;
+    width: 54px;
+    font-size: 20px;
+    border-radius: 2rem;
+    padding: 0 1rem;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    transform-origin: right;
+}
+.back-to-top .icon {
+    display: none;
 }
 
 .back-to-top.show {
     display: block;
     opacity: 1;
     visibility: visible;
+    align-items: center;
+    justify-content: center;
+
 }
 
-.back-to-top:hover {
-    background-color: #2980b9;
-    transform: translateY(-5px); 
+.back-to-top > i, .back-to-top > span {
+    margin : auto;
+}
+
+.back-to-top.pill {
+    width: 220px; 
+    background-color:#2980b9;
+
 }
 
 @media (max-width: 768px) {
