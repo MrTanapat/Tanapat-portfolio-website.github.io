@@ -91,16 +91,6 @@ contactForm.addEventListener("submit", (e) => {
 const backToTopBtn = document.getElementById("backToTopBtn");
 const backToTopIcon = document.getElementById("backToTopIcon");
 
-backToTopBtn.addEventListener("mouseenter", () => {
-  backToTopBtn.classList.add('pill')
-  backToTopIcon.innerHTML = "&ensp;Back To Top"
-});
-
-backToTopBtn.addEventListener("mouseleave", () => {
-  backToTopBtn.classList.remove('pill')
-  backToTopIcon.innerHTML = ""
-
-});
 
 window.addEventListener("scroll", () => {
   if (window.scrollY > 300) {
@@ -115,4 +105,16 @@ backToTopBtn.addEventListener("click", () => {
     top: 0,
     behavior: "smooth",
   });
+});
+
+//back to top tool-tips (pill button) animations
+backToTopBtn.addEventListener("mouseenter", () => {
+  backToTopBtn.classList.add('pill')
+  backToTopIcon.innerHTML = "<span class='pillText'>&ensp;Back To Top</span>"
+});
+
+backToTopBtn.addEventListener("mouseleave", () => {
+  backToTopBtn.classList.remove('pill');
+  backToTopIcon.innerHTML = "";
+
 });

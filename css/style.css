@@ -80,7 +80,7 @@ body {
 /* Hero Section */
 .hero {
     min-height: 100vh;
-    display: flex;
+    /* display: block; */
     align-items: center;
     padding: 100px 20px 50px;
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -534,9 +534,17 @@ body {
     margin : auto;
 }
 
+/* tooltip as a pill button */
 .back-to-top.pill {
     width: 220px; 
     background-color:#2980b9;
+
+}
+
+.pillText {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: visible;
 
 }
 
