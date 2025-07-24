@@ -10,26 +10,56 @@ body {
     line-height: 1.6;
     color: #333;
     overflow-x: hidden;
+
+    /* Transition for darkMode - แก้ไขการสะกด '0.3' เป็น '0.3s' */
+    background-color: #f0f0f0;
+    transition: background-color 0.3s, color 0.3s;
 }
 
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
+/* DarkMode Style - ใช้คลาส 'dark-mode' เพื่อความสอดคล้องกับ JS */
+body.dark-mode {
+    background-color: #222; /* เปลี่ยนสีพื้นหลังเป็นสีเข้ม */
+    color: #f0f0f0; /* เปลี่ยนสีข้อความเป็นสีอ่อน */
 }
 
-/* Navigation */
+/* Navbar Style (Default/Light Mode) */
 .navbar {
     position: fixed;
     top: 0;
     width: 100%;
-    background: rgba(255, 255, 255, 0.95);
+    background: rgba(255, 255, 255, 0.95); /* พื้นหลังโปร่งแสงสำหรับ Light Mode */
     backdrop-filter: blur(10px);
     z-index: 1000;
     padding: 1rem 0;
     transition: all 0.3s ease;
 }
 
+/* Navbar Style (Dark Mode) */
+body.dark-mode .navbar {
+    background-color: rgba(34, 34, 34, 0.95); /* พื้นหลังโปร่งแสงสำหรับ Dark Mode */
+    box-shadow: 0 2px 5px rgba(255, 255, 255, 0.1); /* เงาสำหรับ Dark Mode */
+}
+
+/* Navbar Style when scrolled (Light Mode) */
+.navbar.scrolled {
+    background: rgba(255, 255, 255, 0.98); /* พื้นหลังทึบขึ้นเมื่อ scrolled ใน Light Mode */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Navbar Style when scrolled (Dark Mode) */
+body.dark-mode .navbar.scrolled {
+    background: rgba(34, 34, 34, 0.98); /* พื้นหลังทึบขึ้นเมื่อ scrolled ใน Dark Mode */
+    box-shadow: 0 2px 5px rgba(255, 255, 255, 0.1);
+}
+
+/* Container for general content centering */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Navigation specific styles */
 .nav-container {
     max-width: 1200px;
     margin: 0 auto;
@@ -42,8 +72,13 @@ body {
 .nav-logo a {
     font-size: 1.5rem;
     font-weight: 700;
-    color: #2c3e50;
+    color: #2c3e50; /* สีโลโก้ใน Light Mode */
     text-decoration: none;
+}
+
+/* Logo color in Dark Mode */
+body.dark-mode .nav-logo a {
+    color: #f0f0f0;
 }
 
 .nav-menu {
@@ -53,7 +88,7 @@ body {
 }
 
 .nav-link {
-    color: #333;
+    color: #333; /* สีลิงก์ใน Light Mode */
     text-decoration: none;
     font-weight: 500;
     transition: color 0.3s ease;
@@ -63,8 +98,17 @@ body {
     color: #3498db;
 }
 
+/* Link color in Dark Mode */
+body.dark-mode .nav-menu li a.nav-link {
+    color: #f0f0f0;
+}
+
+body.dark-mode .nav-menu li a.nav-link:hover {
+    color: #88c0d8; /* สี hover ใน Dark Mode */
+}
+
 .nav-toggle {
-    display: none;
+    display: none; /* ซ่อนปุ่ม toggle โดยค่าเริ่มต้น (สำหรับ Desktop) */
     flex-direction: column;
     cursor: pointer;
 }
@@ -72,10 +116,61 @@ body {
 .bar {
     width: 25px;
     height: 3px;
-    background: #333;
+    background: #333; /* สีของ Hamburger icon ใน Light Mode */
     margin: 3px 0;
     transition: 0.3s;
 }
+
+/* Hamburger icon color in Dark Mode */
+body.dark-mode .nav-toggle .bar {
+    background: #f0f0f0;
+}
+
+/* DarkMode Toggle Button Style */
+.btn-darkMode {
+    background-color: #eee;
+    border: 1px solid #ccc;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    position: relative;
+    overflow: hidden;
+    transition: background-color 0.3s, border-color 0.3s;
+    font-size: 1.2em;
+    margin-left: 1rem;
+}
+
+/* Hide Dark Mode Icon by default (for Light Mode) */
+.btn-darkMode .dark {
+    display: none;
+}
+
+/* Show Light Mode Icon by default (for Light Mode) */
+.btn-darkMode .light {
+    display: inline-block;
+}
+
+/* Dark Mode Active Styles for the button */
+body.dark-mode .btn-darkMode {
+    background-color: #555;
+    border-color: #777;
+}
+
+/* Hide Light Mode Icon when Dark Mode is Active */
+body.dark-mode .btn-darkMode .light {
+    display: none;
+}
+
+/* Show Dark Mode Icon when Dark Mode is Active */
+body.dark-mode .btn-darkMode .dark {
+    display: inline-block;
+    color: #f39c12; 
+}
+
 
 /* Hero Section */
 .hero {
@@ -163,18 +258,29 @@ body {
     border: 5px solid rgba(255, 255, 255, 0.2);
 }
 
-/* Section Styles */
+/* Section Titles */
 .section-title {
     font-size: 2.5rem;
     text-align: center;
     margin-bottom: 3rem;
-    color: #2c3e50;
+    color: #2c3e50; /* สีเริ่มต้นใน Light Mode */
 }
+
+/* Section Title color in Dark Mode */
+body.dark-mode .section-title {
+    color: #f0f0f0;
+}
+
 
 /* About Section */
 .about {
     padding: 100px 0;
-    background: #f8f9fa;
+    background: #f8f9fa; /* พื้นหลัง Light Mode */
+}
+
+/* About Section background in Dark Mode */
+body.dark-mode .about {
+    background: #2c2c2c; /* พื้นหลัง Dark Mode */
 }
 
 .about-content {
@@ -187,7 +293,12 @@ body {
 .about-text p {
     font-size: 1.1rem;
     margin-bottom: 2rem;
-    color: #666;
+    color: #666; /* สีข้อความใน Light Mode */
+}
+
+/* About text color in Dark Mode */
+body.dark-mode .about-text p {
+    color: #bbb;
 }
 
 .about-stats {
@@ -214,6 +325,12 @@ body {
 /* Skills Section */
 .skills {
     padding: 100px 0;
+    /* Background will be inherited from body in Light Mode */
+}
+
+/* Skills Section background in Dark Mode */
+body.dark-mode .skills {
+    background-color: #333; /* ใช้สีเดียวกับ body */
 }
 
 .skills-grid {
@@ -223,13 +340,28 @@ body {
 }
 
 .skill-item {
-    background: white;
+    background: white; /* พื้นหลัง Light Mode */
     padding: 2rem;
     border-radius: 10px;
     text-align: center;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease;
 }
+
+/* Skill Item background and text in Dark Mode */
+body.dark-mode .skill-item {
+    background: #444; /* พื้นหลัง Dark Mode */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+body.dark-mode .skill-item h3 {
+    color: #f0f0f0;
+}
+
+body.dark-mode .skill-item p {
+    color: #bbb;
+}
+
 
 .skill-item:hover {
     transform: translateY(-5px);
@@ -243,13 +375,18 @@ body {
 
 .skill-item h3 {
     margin-bottom: 1rem;
-    color: #2c3e50;
+    color: #2c3e50; /* สีเริ่มต้นใน Light Mode */
 }
 
 /* Projects Section */
 .projects {
     padding: 100px 0;
-    background: #f8f9fa;
+    background: #f8f9fa; /* พื้นหลัง Light Mode */
+}
+
+/* Projects Section background in Dark Mode */
+body.dark-mode .projects {
+    background: #2c2c2c; /* พื้นหลัง Dark Mode */
 }
 
 .projects-grid {
@@ -259,11 +396,25 @@ body {
 }
 
 .project-card {
-    background: white;
+    background: white; /* พื้นหลัง Light Mode */
     border-radius: 10px;
     overflow: hidden;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease;
+}
+
+/* Project Card background and text in Dark Mode */
+body.dark-mode .project-card {
+    background: #444; /* พื้นหลัง Dark Mode */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+body.dark-mode .project-card h3 {
+    color: #f0f0f0;
+}
+
+body.dark-mode .project-card p {
+    color: #bbb;
 }
 
 .project-card:hover {
@@ -282,11 +433,11 @@ body {
 
 .project-info h3 {
     margin-bottom: 1rem;
-    color: #2c3e50;
+    color: #2c3e50; /* สีเริ่มต้นใน Light Mode */
 }
 
 .project-info p {
-    color: #666;
+    color: #666; /* สีเริ่มต้นใน Light Mode */
     margin-bottom: 1.5rem;
 }
 
@@ -303,6 +454,12 @@ body {
 /* Contact Section */
 .contact {
     padding: 100px 0;
+    /* Background will be inherited from body in Light Mode */
+}
+
+/* Contact Section background in Dark Mode */
+body.dark-mode .contact {
+    background-color: #333; /* ใช้สีเดียวกับ body */
 }
 
 .contact-content {
@@ -314,11 +471,20 @@ body {
 .contact-info h3 {
     font-size: 1.8rem;
     margin-bottom: 1rem;
-    color: #2c3e50;
+    color: #2c3e50; /* สีเริ่มต้นใน Light Mode */
+}
+
+/* Contact Info text in Dark Mode */
+body.dark-mode .contact-info h3 {
+    color: #f0f0f0;
+}
+
+body.dark-mode .contact-info p {
+    color: #bbb;
 }
 
 .contact-info p {
-    color: #666;
+    color: #666; /* สีเริ่มต้นใน Light Mode */
     margin-bottom: 2rem;
 }
 
@@ -338,6 +504,12 @@ body {
     margin-right: 1rem;
     width: 20px;
 }
+
+/* Contact Item text color in Dark Mode */
+body.dark-mode .contact-item span {
+    color: #f0f0f0;
+}
+
 
 .social-links {
     display: flex;
@@ -361,11 +533,26 @@ body {
     background: #2980b9;
 }
 
+/* Social Links in Dark Mode */
+body.dark-mode .social-links a {
+    background: #555;
+    color: #f0f0f0;
+}
+
+body.dark-mode .social-links a:hover {
+    background: #777;
+}
+
 /* Contact Form */
 .contact-form {
-    background: #f8f9fa;
+    background: #f8f9fa; /* พื้นหลัง Light Mode */
     padding: 2rem;
     border-radius: 10px;
+}
+
+/* Contact Form background in Dark Mode */
+body.dark-mode .contact-form {
+    background: #444; /* พื้นหลัง Dark Mode */
 }
 
 .form-group {
@@ -376,10 +563,23 @@ body {
 .form-group textarea {
     width: 100%;
     padding: 12px;
-    border: 1px solid #ddd;
+    border: 1px solid #ddd; /* สีเส้นขอบใน Light Mode */
     border-radius: 5px;
     font-size: 1rem;
-    transition: border-color 0.3s ease;
+    transition: border-color 0.3s ease, background-color 0.3s, color 0.3s;
+}
+
+/* Form input/textarea in Dark Mode */
+body.dark-mode .form-group input,
+body.dark-mode .form-group textarea {
+    background-color: #555;
+    border-color: #666;
+    color: #f0f0f0;
+}
+
+body.dark-mode .form-group input::placeholder,
+body.dark-mode .form-group textarea::placeholder {
+    color: #ccc; /* สี placeholder ใน Dark Mode */
 }
 
 .form-group input:focus,
@@ -396,6 +596,9 @@ body {
     padding: 2rem 0;
 }
 
+/* Footer in Dark Mode (no change needed as it's already dark) */
+
+
 /* Responsive Design */
 @media (max-width: 768px) {
     .nav-menu {
@@ -403,12 +606,18 @@ body {
         left: -100%;
         top: 70px;
         flex-direction: column;
-        background-color: white;
+        background-color: white; /* พื้นหลัง Light Mode */
         width: 100%;
         text-align: center;
         transition: 0.3s;
         box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
         padding: 2rem 0;
+    }
+
+    /* Mobile Nav Menu in Dark Mode */
+    body.dark-mode .nav-menu {
+        background-color: #2c2c2c; /* พื้นหลัง Dark Mode */
+        box-shadow: 0 10px 27px rgba(255, 255, 255, 0.05);
     }
 
     .nav-menu.active {
@@ -523,7 +732,16 @@ body {
 
 .back-to-top:hover {
     background-color: #2980b9;
-    transform: translateY(-5px); 
+    transform: translateY(-5px);
+}
+
+/* Back to Top Button in Dark Mode */
+body.dark-mode .back-to-top {
+    background-color: #555; /* สีปุ่มใน Dark Mode */
+}
+
+body.dark-mode .back-to-top:hover {
+    background-color: #777; /* สี hover ใน Dark Mode */
 }
 
 @media (max-width: 768px) {
