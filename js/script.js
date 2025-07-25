@@ -6,6 +6,8 @@ const titleText = document.querySelector("#titleText");
 const highlightText = document.querySelector("#highlightText");
 const subtitleText = document.querySelector("#subtitleText");
 const descriptionText = document.querySelector("#descriptionText");
+const cursor = document.querySelector("#cursor");
+
 
 
 
@@ -19,23 +21,27 @@ const descriptionText = document.querySelector("#descriptionText");
 // });
 
 function blinkingCursor() {
-    const cursor = document.querySelector("#cursor");
     cursor.classList.add("blinking");
     //add blinking class
 }
 
+//onload to typewriting effect
 window.addEventListener("load", async () => {
   //wait for each line to fish then blink cursor
   await new Promise(resolve => setTimeout(resolve, 200));
+  cursor.style.height = titleText.offsetHeight + "px";
   await typeWriter(titleText, "Hi, I'm"); 
   highlightText.innerHTML += '&ensp;';
   await typeWriter(highlightText, "Tanapat");
   highlightText.innerHTML += '<br>';
+  cursor.style.height = subtitleText.offsetHeight + "px";
   await typeWriter(subtitleText, "Full Stack Developer");
   subtitleText.innerHTML += '<br>';
+  cursor.style.height = descriptionText.offsetHeight + "px";
+  console.log(titleText.offsetHeight)
   await typeWriter(descriptionText, "I create beautiful and functional web applications", 30);
 
-  blinkingCursor(); //then run this function
+  blinkingCursor(); //then blinking
 });
 
 //typewriting animation object
