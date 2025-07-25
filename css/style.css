@@ -92,7 +92,8 @@ body {
     min-height: 100vh;
 }
 .hero-text {
-
+    position: relative;
+    margin-bottom: 2em;
 }
 
 @keyframes blink {
@@ -106,42 +107,39 @@ body {
 .hero-title {
     font-size: 3rem;
     font-weight: bold;
-    /* margin-bottom: 1rem; */
-    line-height: 1;
-
+    margin-bottom: 0;
 }
 
 .hero-highlight {
     font-size: 3rem;
     font-weight: bold;
     color: #f39c12;
-    line-height: 1;
+    line-height: 2;
 
 }
 
 .hero-subtitle {
     font-size: 1.5rem;
-    margin-bottom: 1rem;
+    margin-top: 1em;
     opacity: 0.9;
-    line-height: 1;
+    line-height: 2;
 
 }
 
 .hero-description {
     font-size: 1.1rem;
-    margin-bottom: 2rem;
+    /* margin-bottom: 0; */
     opacity: 0.8;
-    line-height: 1;
+    line-height: 2;
 
 }
 
 .cursor {
     color: white;
-    /* font-size: 3rem; */
-    /* line-height: 1; */
-    overflow-y: visible;
-    border-left: 2px solid red;
-    
+    position: absolute;
+    border-right: 1.5px solid #fff;
+    padding-left: 5px;
+
 }
 .blinking{
     animation: blink 1s step-start infinite;

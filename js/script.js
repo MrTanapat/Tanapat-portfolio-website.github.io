@@ -10,16 +10,6 @@ const cursor = document.querySelector("#cursor");
 
 
 
-
-
-// window.addEventListener("load", () => {
-//     await typeWriter(h1,"Hi, I'm Tanapat", 70, () => {
-//       typeWriter(p1, "Full Stack Developer", 70, () => {
-//         typeWriter(p2, "I create beautiful and functional web applications", 70)
-//       });
-//     })
-// });
-
 function blinkingCursor() {
     cursor.classList.add("blinking");
     //add blinking class
@@ -28,24 +18,22 @@ function blinkingCursor() {
 //onload to typewriting effect
 window.addEventListener("load", async () => {
   //wait for each line to fish then blink cursor
-  await new Promise(resolve => setTimeout(resolve, 200));
-  cursor.style.height = titleText.offsetHeight + "px";
   await typeWriter(titleText, "Hi, I'm"); 
   highlightText.innerHTML += '&ensp;';
   await typeWriter(highlightText, "Tanapat");
   highlightText.innerHTML += '<br>';
-  cursor.style.height = subtitleText.offsetHeight + "px";
   await typeWriter(subtitleText, "Full Stack Developer");
   subtitleText.innerHTML += '<br>';
-  cursor.style.height = descriptionText.offsetHeight + "px";
-  console.log(titleText.offsetHeight)
   await typeWriter(descriptionText, "I create beautiful and functional web applications", 30);
 
   blinkingCursor(); //then blinking
 });
 
 //typewriting animation object
-const typeWriter = (element, text, speed = 70) => {
+const typeWriter = (element, text,  speed = 70, ) => {
+  var style = window.getComputedStyle(element, null).getPropertyValue('font-size');
+  var fontSize = parseFloat(style); 
+
   return new Promise(resolve => {
     let i = 0;
     const type = () => {
@@ -57,6 +45,9 @@ const typeWriter = (element, text, speed = 70) => {
         resolve();
       }
     };
+    cursor.style.height = (fontSize + 3) + "px";
+    console.log(element.style.fontSize);
+    cursor.style.bottom = (fontSize / 2) + "px";
     type();
   });
 };
