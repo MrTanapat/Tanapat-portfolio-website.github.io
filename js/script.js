@@ -6,19 +6,17 @@ document.addEventListener("DOMContentLoaded", () => {
   const navMenu = document.querySelector(".nav-menu");
 
   if (navToggle && navMenu) {
-    // Ensure elements exist before adding listeners
-
     navToggle.addEventListener("click", () => {
       navMenu.classList.toggle("active");
 
-      navToggle.classList.toggle("active"); // Prevent body scrolling when mobile menu is open
+      navToggle.classList.toggle("active");
 
       document.body.classList.toggle(
         "no-scroll",
 
         navMenu.classList.contains("active")
       );
-    }); // Close mobile menu when clicking on a link
+    });
 
     document.querySelectorAll(".nav-link").forEach((link) => {
       link.addEventListener("click", () => {
@@ -29,7 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
         document.body.classList.remove("no-scroll");
       });
     });
-  } // --- Smooth scrolling for navigation links ---
+  }
 
   document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     anchor.addEventListener("click", function (e) {
@@ -40,8 +38,6 @@ document.addEventListener("DOMContentLoaded", () => {
       const target = document.querySelector(targetId);
 
       if (target) {
-        // Adjust scroll position to account for fixed navbar
-
         const navbarHeight =
           document.querySelector(".navbar")?.offsetHeight || 0;
 
@@ -54,7 +50,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
       }
     });
-  }); // --- Navbar background on scroll ---
+  });
 
   const navbar = document.querySelector(".navbar");
 
@@ -66,13 +62,13 @@ document.addEventListener("DOMContentLoaded", () => {
         navbar.classList.remove("scrolled");
       }
     });
-  } // --- Contact form handling ---
+  }
 
   const contactForm = document.querySelector(".contact-form");
 
   if (contactForm) {
     contactForm.addEventListener("submit", (e) => {
-      e.preventDefault(); // Get form data
+      e.preventDefault();
 
       const formData = new FormData(contactForm);
 
@@ -80,7 +76,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const email = formData.get("email");
 
-      const message = formData.get("message"); // Simple validation
+      const message = formData.get("message");
 
       if (name && email && message) {
         alert("Thank you for your message! I will get back to you soon.");
@@ -90,7 +86,7 @@ document.addEventListener("DOMContentLoaded", () => {
         alert("Please fill in all fields.");
       }
     });
-  } // --- Back to Top Button function ---
+  }
 
   const backToTopBtn = document.getElementById("backToTopBtn");
 
@@ -110,33 +106,29 @@ document.addEventListener("DOMContentLoaded", () => {
         behavior: "smooth",
       });
     });
-  } // --- Dark Mode Function ---
+  }
+  // --- Dark Mode Function ---
 
   const darkModeToggle = document.getElementById("darkModeToggle");
 
-  const body = document.body; // Function to set theme and update local storage
+  const body = document.body;
 
   function setTheme(theme) {
     body.classList.remove("light-mode", "dark-mode");
 
     body.classList.add(`${theme}-mode`);
 
-    localStorage.setItem("theme", theme); // Update icon visibility
+    localStorage.setItem("theme", theme);
 
     updateThemeIcon(theme);
-  } // Function to update icon visibility based on theme
+  }
 
   function updateThemeIcon(theme) {
     if (darkModeToggle) {
-      // Check if the toggle button exists
-
       const lightIcon = darkModeToggle.querySelector(".icon.light");
-
       const darkIcon = darkModeToggle.querySelector(".icon.dark");
 
       if (lightIcon && darkIcon) {
-        // Ensure icons exist
-
         if (theme === "dark") {
           lightIcon.style.display = "none";
 
@@ -148,21 +140,19 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       }
     }
-  } // Initialize theme on load
+  }
 
   const currentTheme = localStorage.getItem("theme") || "light";
 
-  setTheme(currentTheme); // Apply the theme immediately // Event listener for toggle button
+  setTheme(currentTheme);
 
   if (darkModeToggle) {
     darkModeToggle.addEventListener("click", function () {
-      // Check if 'dark-mode' class is currently on the body
-
       const currentThemeIsDark = body.classList.contains("dark-mode");
 
       const newTheme = currentThemeIsDark ? "light" : "dark";
 
-      setTheme(newTheme); // Animation effect - Corrected 'tranform' to 'transform'
+      setTheme(newTheme);
 
       darkModeToggle.style.transform = "rotate(360deg)";
 
@@ -173,7 +163,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-// Loading Animation (Progress Bar Version)
+// Loading Animation
 window.addEventListener("load", function () {
   const loader = document.getElementById("loading-overlay");
   const progressBar = document.querySelector(".progress-fill");
@@ -206,3 +196,57 @@ window.addEventListener("load", function () {
     }, 150);
   }
 });
+
+//Scroll Progress
+function updateScrollProgress() {
+  const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+  const scrollHeight =
+    document.documentElement.scrollHeight -
+    document.documentElement.clientHeight;
+
+  const scrollPercent = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
+
+  const scrollProgressBar = document.getElementById(
+    "scroll-progress-indicator"
+  );
+  if (scrollProgressBar) {
+    scrollProgressBar.style.width = scrollPercent + "%";
+  }
+
+  const navbar = document.querySelector(".navbar");
+  const navbarHeight = navbar ? navbar.offsetHeight : 0;
+  const sections = document.querySelectorAll("section[id]");
+  const navLinks = document.querySelectorAll(".nav-menu .nav-link");
+
+  let currentActiveSectionId = null;
+
+  sections.forEach((section) => {
+    const sectionTop = section.offsetTop - navbarHeight - 10;
+    const sectionBottom = sectionTop + section.offsetHeight;
+
+    if (scrollTop >= sectionTop && scrollTop < sectionBottom) {
+      currentActiveSectionId = section.getAttribute("id");
+    }
+  });
+
+  if (scrollTop === 0) {
+    currentActiveSectionId = "hero";
+  }
+
+  navLinks.forEach((link) => {
+    link.classList.remove("active");
+  });
+
+  if (currentActiveSectionId) {
+    const activeLink = document.querySelector(
+      `.nav-menu .nav-link[href="#${currentActiveSectionId}"]`
+    );
+    if (activeLink) {
+      activeLink.classList.add("active");
+    }
+  }
+}
+
+window.addEventListener("scroll", updateScrollProgress);
+window.addEventListener("resize", updateScrollProgress);
+window.addEventListener("DOMContentLoaded", updateScrollProgress);
