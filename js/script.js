@@ -33,20 +33,20 @@ window.addEventListener("load", async () => {
   highlightText.innerHTML += '<br>';
   await typeWriter(subtitleText, "Full Stack Developer");
   subtitleText.innerHTML += '<br>';
-  await typeWriter(descriptionText, "I create beautiful and functional web applications");
+  await typeWriter(descriptionText, "I create beautiful and functional web applications", 30);
 
   blinkingCursor(); //then run this function
 });
 
 //typewriting animation object
-const typeWriter = (element, text) => {
+const typeWriter = (element, text, speed = 70) => {
   return new Promise(resolve => {
     let i = 0;
     const type = () => {
       if (i < text.length) {
         element.innerHTML += text.charAt(i);
         i++;
-        setTimeout(type, 70);
+        setTimeout(type, speed);
       } else {
         resolve();
       }
