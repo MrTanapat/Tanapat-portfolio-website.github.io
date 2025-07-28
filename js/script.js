@@ -20,7 +20,7 @@ window.addEventListener("load", async () => {
   //wait for each line to fish then blink cursor
   await typeWriter(titleText, "Hi, I'm");
   highlightText.innerHTML += "&ensp;";
-  await typeWriter(highlightText, "Tanapat");
+  await typeWriter(highlightText, "Tanapat Nukool");
   highlightText.innerHTML += "<br>";
   await typeWriter(subtitleText, "Full Stack Developer");
   subtitleText.innerHTML += "<br>";
