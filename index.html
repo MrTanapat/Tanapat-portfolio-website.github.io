@@ -1,14 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Name - Portfolio</title>
+    <title>TANAPAT - Portfolio</title>
     <link rel="stylesheet" href="css/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
+
 <body>
+    <!--Progress Bar-->
+    <div id="scroll-progress-indicator"></div>
+    
+    <!--Loadinng Screen-->
+    <div id="loading-overlay" class="loader">
+        <div class="progress-bar">
+            <div class="progress-fill"></div>
+        </div>
+        <div class="loading-text">Loading...</div>
+    </div>
+
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
@@ -21,6 +35,15 @@
                 <li><a href="#skills" class="nav-link">Skills</a></li>
                 <li><a href="#projects" class="nav-link">Projects</a></li>
                 <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <ul class="nav-menu">
+                <!-- Dark ModeTogle-->
+                <li>
+                    <button id="darkModeToggle" class="btn-darkMode">
+                        <span class="icon light fas fa-sun"></span>
+                        <span class="icon dark fas fa-moon"></span>
+                    </button>
+                </li>
             </ul>
             <div class="nav-toggle">
                 <span class="bar"></span>
@@ -60,7 +83,8 @@
             <h2 class="section-title">About Me</h2>
             <div class="about-content">
                 <div class="about-text">
-                    <p>I am a passionate Full Stack Developer with experience in creating web applications using modern technologies. 
+                    <p>I am a passionate Full Stack Developer with experience in creating web applications using modern
+                        technologies.
                         I love solving complex problems and learning new technologies.</p>
                     <div class="about-stats">
                         <div class="stat-item">
@@ -212,4 +236,5 @@
 
     <script src="js/script.js"></script>
 </body>
+
 </html>

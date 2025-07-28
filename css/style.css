@@ -10,15 +10,17 @@ body {
     line-height: 1.6;
     color: #333;
     overflow-x: hidden;
+    background-color: #f0f0f0;
+    transition: background-color 0.3s, color 0.3s;
 }
 
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
+/* DarkMode Style */
+body.dark-mode {
+    background-color: #222;
+    color: #f0f0f0;
 }
 
-/* Navigation */
+/* Navbar Style (Default/Light Mode) */
 .navbar {
     position: fixed;
     top: 0;
@@ -30,6 +32,57 @@ body {
     transition: all 0.3s ease;
 }
 
+/*Progress Bar*/
+#scroll-progress-indicator {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 5px;
+    background-color: #3498db;
+    z-index: 1001;
+    transition: width 0.1s linear;
+}
+
+body.dark-mode #scroll-progress-indicator {
+    background-color: #88c0d8;
+}
+
+.nav-link.active {
+    color: #3498db;
+    font-weight: 700;
+}
+
+body.dark-mode .nav-link.active {
+    color: #88c0d8;
+}
+
+/* Navbar Style (Dark Mode) */
+body.dark-mode .navbar {
+    background-color: rgba(34, 34, 34, 0.95);
+    box-shadow: 0 2px 5px rgba(255, 255, 255, 0.1); 
+}
+
+/* Navbar Style when scrolled (Light Mode) */
+.navbar.scrolled {
+    background: rgba(255, 255, 255, 0.98);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Navbar Style when scrolled (Dark Mode) */
+body.dark-mode .navbar.scrolled {
+    background: rgba(34, 34, 34, 0.98);
+    box-shadow: 0 2px 5px rgba(255, 255, 255, 0.1);
+}
+
+/* Container for general content centering */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Navigation specific styles */
 .nav-container {
     max-width: 1200px;
     margin: 0 auto;
@@ -46,6 +99,11 @@ body {
     text-decoration: none;
 }
 
+/* Logo color in Dark Mode */
+body.dark-mode .nav-logo a {
+    color: #f0f0f0;
+}
+
 .nav-menu {
     display: flex;
     list-style: none;
@@ -53,7 +111,7 @@ body {
 }
 
 .nav-link {
-    color: #333;
+    color: #333; /* สีลิงก์ใน Light Mode */
     text-decoration: none;
     font-weight: 500;
     transition: color 0.3s ease;
@@ -61,6 +119,15 @@ body {
 
 .nav-link:hover {
     color: #3498db;
+}
+
+/* Link color in Dark Mode */
+body.dark-mode .nav-menu li a.nav-link {
+    color: #f0f0f0;
+}
+
+body.dark-mode .nav-menu li a.nav-link:hover {
+    color: #88c0d8; /* สี hover ใน Dark Mode */
 }
 
 .nav-toggle {
@@ -75,6 +142,119 @@ body {
     background: #333;
     margin: 3px 0;
     transition: 0.3s;
+}
+
+/* Hamburger icon color in Dark Mode */
+body.dark-mode .nav-toggle .bar {
+    background: #f0f0f0;
+}
+
+/* DarkMode Toggle Button Style */
+.btn-darkMode {
+    background-color: #eee;
+    border: 1px solid #ccc;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    position: relative;
+    overflow: hidden;
+    transition: background-color 0.3s, border-color 0.3s;
+    font-size: 1.2em;
+    margin-left: 1rem;
+}
+
+/* Hide Dark Mode Icon by default (for Light Mode) */
+.btn-darkMode .dark {
+    display: none;
+}
+
+/* Show Light Mode Icon by default (for Light Mode) */
+.btn-darkMode .light {
+    display: inline-block;
+}
+
+/* Dark Mode Active Styles for the button */
+body.dark-mode .btn-darkMode {
+    background-color: #555;
+    border-color: #777;
+}
+
+/* Hide Light Mode Icon when Dark Mode is Active */
+body.dark-mode .btn-darkMode .light {
+    display: none;
+}
+
+/* Show Dark Mode Icon when Dark Mode is Active */
+body.dark-mode .btn-darkMode .dark {
+    display: inline-block;
+    color: #f39c12; 
+}
+
+#loading-overlay.loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.95);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.5s ease-out, visibility 0.5s ease-out;
+}
+
+body.dark-mode #loading-overlay.loader {
+    background-color: rgba(34, 34, 34, 0.95);
+    color: #f0f0f0;
+}
+
+.progress-bar {
+    width: 60%;
+    max-width: 400px;
+    height: 8px;
+    background-color: #e0e0e0;
+    border-radius: 5px;
+    overflow: hidden;
+    margin-top: 15px;
+}
+
+body.dark-mode .progress-bar {
+    background-color: #555;
+}
+
+.progress-fill {
+    height: 100%;
+    width: 0%;
+    background-color: #3498db;
+    border-radius: 5px;
+    transition: width 0.1s linear;
+}
+
+body.dark-mode .progress-fill {
+    background-color: #88c0d8;
+}
+
+.loading-text {
+    font-size: 1.2rem;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+body.dark-mode .loading-text {
+    color: #e0e0e0;
+}
+
+#loading-overlay.loader.fade-out {
+    opacity: 0;
+    visibility: hidden;
 }
 
 /* Hero Section */
@@ -195,7 +375,7 @@ body {
     border: 5px solid rgba(255, 255, 255, 0.2);
 }
 
-/* Section Styles */
+/* Section Titles */
 .section-title {
     font-size: 2.5rem;
     text-align: center;
@@ -203,10 +383,21 @@ body {
     color: #2c3e50;
 }
 
+/* Section Title color in Dark Mode */
+body.dark-mode .section-title {
+    color: #f0f0f0;
+}
+
+
 /* About Section */
 .about {
     padding: 100px 0;
     background: #f8f9fa;
+}
+
+/* About Section background in Dark Mode */
+body.dark-mode .about {
+    background: #2c2c2c;
 }
 
 .about-content {
@@ -220,6 +411,11 @@ body {
     font-size: 1.1rem;
     margin-bottom: 2rem;
     color: #666;
+}
+
+/* About text color in Dark Mode */
+body.dark-mode .about-text p {
+    color: #bbb;
 }
 
 .about-stats {
@@ -248,6 +444,11 @@ body {
     padding: 100px 0;
 }
 
+/* Skills Section background in Dark Mode */
+body.dark-mode .skills {
+    background-color: #333;
+}
+
 .skills-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -262,6 +463,21 @@ body {
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease;
 }
+
+/* Skill Item background and text in Dark Mode */
+body.dark-mode .skill-item {
+    background: #444; 
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+body.dark-mode .skill-item h3 {
+    color: #f0f0f0;
+}
+
+body.dark-mode .skill-item p {
+    color: #bbb;
+}
+
 
 .skill-item:hover {
     transform: translateY(-5px);
@@ -372,6 +588,11 @@ body {
     align-self: center;
 }
 
+/* Projects Section background in Dark Mode */
+body.dark-mode .projects {
+    background: #2c2c2c;
+}
+
 .projects-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, 350px);
@@ -386,6 +607,20 @@ body {
     overflow: hidden;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease;
+}
+
+/* Project Card background and text in Dark Mode */
+body.dark-mode .project-card {
+    background: #444;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+body.dark-mode .project-card h3 {
+    color: #f0f0f0;
+}
+
+body.dark-mode .project-card p {
+    color: #bbb;
 }
 
 .project-card:hover {
@@ -427,6 +662,11 @@ body {
     padding: 100px 0;
 }
 
+/* Contact Section background in Dark Mode */
+body.dark-mode .contact {
+    background-color: #333;
+}
+
 .contact-content {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -437,6 +677,15 @@ body {
     font-size: 1.8rem;
     margin-bottom: 1rem;
     color: #2c3e50;
+}
+
+/* Contact Info text in Dark Mode */
+body.dark-mode .contact-info h3 {
+    color: #f0f0f0;
+}
+
+body.dark-mode .contact-info p {
+    color: #bbb;
 }
 
 .contact-info p {
@@ -461,6 +710,12 @@ body {
     width: 20px;
 }
 
+/* Contact Item text color in Dark Mode */
+body.dark-mode .contact-item span {
+    color: #f0f0f0;
+}
+
+
 .social-links {
     display: flex;
     gap: 1rem;
@@ -483,11 +738,26 @@ body {
     background: #2980b9;
 }
 
+/* Social Links in Dark Mode */
+body.dark-mode .social-links a {
+    background: #555;
+    color: #f0f0f0;
+}
+
+body.dark-mode .social-links a:hover {
+    background: #777;
+}
+
 /* Contact Form */
 .contact-form {
     background: #f8f9fa;
     padding: 2rem;
     border-radius: 10px;
+}
+
+/* Contact Form background in Dark Mode */
+body.dark-mode .contact-form {
+    background: #444;
 }
 
 .form-group {
@@ -501,7 +771,20 @@ body {
     border: 1px solid #ddd;
     border-radius: 5px;
     font-size: 1rem;
-    transition: border-color 0.3s ease;
+    transition: border-color 0.3s ease, background-color 0.3s, color 0.3s;
+}
+
+/* Form input/textarea in Dark Mode */
+body.dark-mode .form-group input,
+body.dark-mode .form-group textarea {
+    background-color: #555;
+    border-color: #666;
+    color: #f0f0f0;
+}
+
+body.dark-mode .form-group input::placeholder,
+body.dark-mode .form-group textarea::placeholder {
+    color: #ccc;
 }
 
 .form-group input:focus,
@@ -518,6 +801,7 @@ body {
     padding: 2rem 0;
 }
 
+
 /* Responsive Design */
 @media (max-width: 768px) {
     .nav-menu {
@@ -531,6 +815,12 @@ body {
         transition: 0.3s;
         box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
         padding: 2rem 0;
+    }
+
+    /* Mobile Nav Menu in Dark Mode */
+    body.dark-mode .nav-menu {
+        background-color: #2c2c2c;
+        box-shadow: 0 10px 27px rgba(255, 255, 255, 0.05);
     }
 
     .nav-menu.active {
@@ -680,6 +970,13 @@ body {
 
 .pill {
     max-width: 300px;
+/* Back to Top Button in Dark Mode */
+body.dark-mode .back-to-top {
+    background-color: #555;
+}
+
+body.dark-mode .back-to-top:hover {
+    background-color: #777;
 }
 
 .pill-text {
