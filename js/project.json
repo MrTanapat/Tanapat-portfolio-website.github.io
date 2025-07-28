@@ -1,0 +1,32 @@
+[
+  {
+    "title": "DormLocator",
+    "image": "images/Dromlocaation.png",
+    "alt": "Project 1",
+    "description": "A web application built with React, Tailwind CSS, and Firebase that helps students find dormitories near the university.",
+    "links": {
+      "liveDemo": "#",
+      "github": "#"
+    }
+  },
+  {
+    "title": "Coffee Shop Website",
+    "image": "images/CoffeeShop.png",
+    "alt": "Project 2",
+    "description": "This website presents menus, promotions, and a contact form. It includes a backend panel for the owner to update content.",
+    "links": {
+      "liveDemo": "#",
+      "github": "#"
+    }
+  },
+  {
+    "title": "Tetris Game (Mini Project)",
+    "image": "images/tertris.png",
+    "alt": "Project 3",
+    "description": "A classic Tetris game built with JavaScript and HTML5 Canvas. This project demonstrates my understanding of game loops, collision detection, and key event handling.",
+    "links": {
+      "liveDemo": "#",
+      "github": "#"
+    }
+  }
+]

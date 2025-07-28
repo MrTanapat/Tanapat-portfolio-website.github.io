@@ -55,17 +55,25 @@
 
     <!-- Hero Section -->
     <section id="home" class="hero">
-        <div class="hero-content">
-            <h1>Hello, I'm <span class="highlight">Tanapat</span></h1>
-            <p class="hero-subtitle">Full Stack Developer</p>
-            <p class="hero-description">I create beautiful and functional web applications</p>
-            <div class="hero-buttons">
-                <a href="#projects" class="btn btn-primary">View My Work</a>
-                <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+        <div class="container">
+            <div class="hero-main">
+                <div class="hero-content">
+                    <div class="hero-text">
+                        <span id="titleText" class="hero-title"></span>
+                        <span id="highlightText" class="hero-highlight"></span>
+                        <span id="subtitleText" class="hero-subtitle"></span>
+                        <span id="descriptionText" class="hero-description"></span>
+                        <span id="cursor" class="cursor"></span>
+                    </div>
+                    <div class="hero-buttons">
+                        <a href="#projects" class="btn btn-primary">View My Work</a>
+                        <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <img src="images/profile.png" alt="Profile Picture">
+                </div>
             </div>
-        </div>
-        <div class="hero-image">
-            <img src="images/profile.png" alt="Profile Picture">
         </div>
     </section>
 
@@ -142,44 +150,21 @@
     <!-- Projects Section -->
     <section id="projects" class="projects">
         <div class="container">
-            <h2 class="section-title">My Projects</h2>
-            <div class="projects-grid">
-                <div class="project-card">
-                    <img src="images/Dromlocaation.png" alt="Project 1">
-                    <div class="project-info">
-                        <h3>DormLocator</h3>
-                        <p>A web application built with React, Tailwind CSS, and Firebase that helps students find
-                            dormitories near the university.</p>
-                        <div class="project-links">
-                            <a href="#" class="btn btn-small">Live Demo</a>
-                            <a href="#" class="btn btn-small btn-secondary">GitHub</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <img src="images/CoffeeShop.png" alt="Project 2">
-                    <div class="project-info">
-                        <h3>Coffee Shop Website</h3>
-                        <p>This website presents menus, promotions, and a contact form. It includes a backend panel for
-                            the owner to update content.</p>
-                        <div class="project-links">
-                            <a href="#" class="btn btn-small">Live Demo</a>
-                            <a href="#" class="btn btn-small btn-secondary">GitHub</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <img src="images/tertris.png" alt="Project 3">
-                    <div class="project-info">
-                        <h3>Tetris Game (Mini Project)</h3>
-                        <p>A classic Tetris game built with JavaScript and HTML5 Canvas. This project demonstrates my
-                            understanding of game loops, collision detection, and key event handling.</p>
-                        <div class="project-links">
-                            <a href="#" class="btn btn-small">Live Demo</a>
-                            <a href="#" class="btn btn-small btn-secondary">GitHub</a>
-                        </div>
-                    </div>
-                </div>
+            <div class="projects-title-wrapper">
+                <h2 class="section-title project-title">My Projects </h2>
+                <ul class="project-filter" id="projectsFilter">
+                    <li>
+                        <input type="text" placeholder="Search" id="searchInput">
+                    </li>
+                    <li>
+                        <button id="searchBtn">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </button>
+                    </li>
+                </ul>
+            </div>
+            <div id="projectContainer" class="projects-grid">
+
             </div>
         </div>
     </section>
@@ -228,10 +213,19 @@
         </div>
     </section>
 
-    <!-- BacktopButton -->
-    <button id="backToTopBtn" class="back-to-top">
-        <i class="fas fa-arrow-up"></i>
-    </button>
+     <div id="backToTopBtn" class="back-to-top">
+        <ul>
+            <li>
+                <button>
+                    <i id="backToTopIcon" class="fas fa-arrow-up"></i>
+                </button>
+            </li>
+            <li>
+                <span class="pill-text">Back To Top</span>
+            </li>
+        </ul>
+        
+     </div>
 
     <!-- Footer -->
     <footer class="footer">
