@@ -9,28 +9,54 @@ const descriptionText = document.querySelector("#descriptionText");
 const cursor = document.querySelector("#cursor");
 const projectContainer = document.querySelector("#projectContainer");
 let allProjects = [];
+let isDarkTheme = false;
 
-function blinkingCursor() {
-  cursor.classList.add("blinking");
-  //add blinking class
-}
-
-//onload to typewriting effect
 window.addEventListener("load", async () => {
-  //wait for each line to fish then blink cursor
-  await typeWriter(titleText, "Hi, I'm");
+  const loader = document.getElementById("loading-overlay");
+  const progressBar = document.querySelector(".progress-fill");
+  await new Promise(resolve => {
+    if (loader && progressBar) {
+      document.body.style.overflow = "hidden";
+      let progress = 0;
+      const loadingInterval = setInterval(() => {
+        progress += 10;
+        progressBar.style.width = progress + "%";
+        if (progress >= 100) {
+          clearInterval(loadingInterval);
+            setTimeout(() => {
+            loader.classList.add("fade-out");
+            loader.addEventListener(
+              "transitionend",
+              function handler() {
+                loader.style.display = "none";
+                document.body.style.overflow = "auto";
+                loader.removeEventListener("transitionend", handler);
+                resolve();
+              },
+              { once: true }
+            );
+          }, 500);
+        }
+      }, 150);
+    }
+  })
+  await typeWriter(titleText, "Hi, I'm",30);
   highlightText.innerHTML += "&ensp;";
-  await typeWriter(highlightText, "Tanapat");
+  await typeWriter(highlightText, "Tanapat", 30);
   highlightText.innerHTML += "<br>";
-  await typeWriter(subtitleText, "Full Stack Developer");
+  await typeWriter(subtitleText, "Full Stack Developer", 30);
   subtitleText.innerHTML += "<br>";
   await typeWriter(
     descriptionText,
     "I create beautiful and functional web applications",
-    30
+    20
   );
   blinkingCursor(); //then blinking
 });
+
+function blinkingCursor() {
+  cursor.classList.add("blinking");
+}
 
 //typewriting animation object
 const typeWriter = (element, text, speed = 70) => {
@@ -38,7 +64,6 @@ const typeWriter = (element, text, speed = 70) => {
     .getComputedStyle(element, null)
     .getPropertyValue("font-size");
   var fontSize = parseFloat(style);
-
   return new Promise((resolve) => {
     let i = 0;
     const type = () => {
@@ -56,11 +81,10 @@ const typeWriter = (element, text, speed = 70) => {
     type();
   });
 };
+
 document.addEventListener("DOMContentLoaded", () => {
   // --- Mobile Navigation Toggle ---
-
   const navToggle = document.querySelector(".nav-toggle");
-
   const navMenu = document.querySelector(".nav-menu");
 
   if (navToggle && navMenu) {
@@ -217,43 +241,15 @@ document.addEventListener("DOMContentLoaded", () => {
       setTimeout(() => {
         darkModeToggle.style.transform = "rotate(0deg)";
       }, 300);
+
+      
+
     });
   }
 });
 
 // Loading Animation
-window.addEventListener("load", function () {
-  const loader = document.getElementById("loading-overlay");
-  const progressBar = document.querySelector(".progress-fill");
 
-  if (loader && progressBar) {
-    document.body.style.overflow = "hidden";
-
-    let progress = 0;
-    const loadingInterval = setInterval(() => {
-      progress += 10;
-      progressBar.style.width = progress + "%";
-
-      if (progress >= 100) {
-        clearInterval(loadingInterval);
-
-        setTimeout(() => {
-          loader.classList.add("fade-out");
-
-          loader.addEventListener(
-            "transitionend",
-            function handler() {
-              loader.style.display = "none";
-              document.body.style.overflow = "auto";
-              loader.removeEventListener("transitionend", handler);
-            },
-            { once: true }
-          );
-        }, 500);
-      }
-    }, 150);
-  }
-});
 
 //project filter button functions
 const projectsFilter = document.querySelector("#projectsFilter");
@@ -270,7 +266,6 @@ searchBtn.addEventListener("click", () => {
     projectsFilter.classList.toggle("project-pill");
     searchBtn.style.cssText += `
       background-color : #3498db;
-      color: #ffffff;
     `;
     searchBtn.innerHTML = `
       <i class="fa-solid fa-x"></i>
@@ -280,8 +275,7 @@ searchBtn.addEventListener("click", () => {
     projectsFilter.classList.toggle("project-pill");
     searchInput.style.display = "none";
     searchBtn.style.cssText += `
-      background-color : #f8f9fa;
-      color: #2c3e50;
+      background-color : transparent;
     `;
     searchBtn.innerHTML = `
           <i class="fa-solid fa-magnifying-glass"></i>
@@ -289,20 +283,22 @@ searchBtn.addEventListener("click", () => {
     isClick = !isClick;
   }
 });
-searchBtn.addEventListener("mouseover", () => {
-  searchBtn.style.cssText = `
-    color: #fff;
-    background-color: #3498db;
-  `;
-});
-searchBtn.addEventListener("mouseleave", () => {
-  if (!isClick) {
-    searchBtn.style.cssText = `
-      color: #2c3e50;
-      background-color: #f8f9fa;
-    `;
-  }
-});
+
+// searchBtn.addEventListener("mouseover", () => {
+//   searchBtn.style.cssText = `
+//     color: #fff;
+//     background-color: #3498db;
+//   `;
+// });
+// searchBtn.addEventListener("mouseleave", () => {
+//   if (!isClick) {
+//     searchBtn.style.cssText = `
+//        color: #2c3e50;
+//     `;
+//   }
+// });
+
+
 
 window.addEventListener("DOMContentLoaded", () => {
   fetch("js/project.json")
@@ -329,7 +325,7 @@ function filterClickedFunction(name) {
 }
 
 const ShowProject = (projects) => {
-  projectContainer.innerHTML = '';
+  projectContainer.innerHTML = "";
   projects.forEach((project) => {
     let i = 0;
     const projectCard = document.createElement("div");
@@ -350,12 +346,13 @@ const ShowProject = (projects) => {
   });
 };
 
-// Back to Top Button function
-const backToTopBtn = document.getElementById("backToTopBtn");
-const backToTopIcon = document.getElementById("backToTopIcon");
+
+
 //Scroll Progress
+
 function updateScrollProgress() {
   const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
   const scrollHeight =
     document.documentElement.scrollHeight -
     document.documentElement.clientHeight;
@@ -365,36 +362,30 @@ function updateScrollProgress() {
   const scrollProgressBar = document.getElementById(
     "scroll-progress-indicator"
   );
+
   if (scrollProgressBar) {
     scrollProgressBar.style.width = scrollPercent + "%";
   }
 
   const navbar = document.querySelector(".navbar");
+
   const navbarHeight = navbar ? navbar.offsetHeight : 0;
+
   const sections = document.querySelectorAll("section[id]");
+
   const navLinks = document.querySelectorAll(".nav-menu .nav-link");
 
   let currentActiveSectionId = null;
 
   sections.forEach((section) => {
     const sectionTop = section.offsetTop - navbarHeight - 10;
+
     const sectionBottom = sectionTop + section.offsetHeight;
 
     if (scrollTop >= sectionTop && scrollTop < sectionBottom) {
       currentActiveSectionId = section.getAttribute("id");
     }
   });
-});
-
-//back to top tool-tips (pill button) animations
-backToTopBtn.addEventListener("mouseenter", () => {
-  backToTopBtn.classList.toggle("pill");
-});
-
-backToTopBtn.addEventListener("mouseleave", () => {
-  backToTopBtn.classList.toggle("pill");
-});
-=======
 
   if (scrollTop === 0) {
     currentActiveSectionId = "hero";
@@ -408,11 +399,25 @@ backToTopBtn.addEventListener("mouseleave", () => {
     const activeLink = document.querySelector(
       `.nav-menu .nav-link[href="#${currentActiveSectionId}"]`
     );
+
     if (activeLink) {
       activeLink.classList.add("active");
     }
   }
 }
+
+
+// Back to Top Button function
+const backToTopBtn = document.getElementById("backToTopBtn");
+const backToTopIcon = document.getElementById("backToTopIcon");
+//back to top tool-tips (pill button) animations
+backToTopBtn.addEventListener("mouseenter", () => {
+  backToTopBtn.classList.toggle("pill");
+});
+
+backToTopBtn.addEventListener("mouseleave", () => {
+  backToTopBtn.classList.toggle("pill");
+});
 
 window.addEventListener("scroll", updateScrollProgress);
 window.addEventListener("resize", updateScrollProgress);
