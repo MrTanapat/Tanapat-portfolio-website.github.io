@@ -515,7 +515,7 @@ body.dark-mode .skill-item p {
 
     display: flex;
     justify-content: end;
-    transition: max-width 0.4s ease-in;
+    transition: all 0.4s ease-in;
     
     max-width: 0;
     min-width: 60px;
@@ -529,20 +529,17 @@ body.dark-mode .skill-item p {
     background-color: #f8f9fa;
 }
 
-
-
-
-
-
+.project-filter,
+.project-filter ul,
+.project-filter li,
+.project-filter li>button {
+    background-color: transparent;
+}
 
 .project-pill {
     max-width: 500px;
     background-color: #3498db;
-    
 }
-
-
-
 
 .project-filter button {
     font-size: 1.2em;
@@ -556,7 +553,7 @@ body.dark-mode .skill-item p {
     color: #2c3e50;
     border-radius: 2rem;
     list-style: none;
-    background-color: #f8f9fa;
+    background-color: transparent;
     cursor: pointer;
     transition: all 0.3s ease;
 }
@@ -581,6 +578,7 @@ body.dark-mode .skill-item p {
 .project-filter button:hover,
 .project-filter li:hover,
 .project-pill:hover {
+    color: #fff;
     background-color: #3498db;
 }
 
@@ -595,13 +593,13 @@ body.dark-mode .projects {
 
 .projects-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, 350px);
-    justify-content: start;
+    grid-template-columns: repeat(auto-fit, 365px);
+    justify-content: center;
     gap: 2rem;
 }
 
 .project-card {
-    max-width: 370px;
+    max-width: 700px;
     background: white;
     border-radius: 10px;
     overflow: hidden;
@@ -787,6 +785,10 @@ body.dark-mode .form-group textarea::placeholder {
     color: #ccc;
 }
 
+body.dark-mode .project-filter button {
+    color: #ffffff;
+}
+
 .form-group input:focus,
 .form-group textarea:focus {
     outline: none;
@@ -970,6 +972,9 @@ body.dark-mode .form-group textarea::placeholder {
 
 .pill {
     max-width: 300px;
+
+}
+
 /* Back to Top Button in Dark Mode */
 body.dark-mode .back-to-top {
     background-color: #555;
